@@ -1,0 +1,36 @@
+- name: Remove dependences
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - docker-ce-cli
+    - docker-ce
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: Uninstall Docker cli package
+  apt:
+    name: docker-ce
+    state: absent
+    purge: yes
+
+- name: Uninstall Docker package
+  apt:
+    name: docker-ce-cli
+    state: absent
+    purge: yes
+
+- name: Delete all Docker data and resources
+  command: rm -rf /var/lib/docker
+
+- name: Remove the Docker key
+  apt_key:
+    id: 0EBFCD88
+    state: absent
+
+- name: Remove the repository of Docker from the source list
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+    state: absent
