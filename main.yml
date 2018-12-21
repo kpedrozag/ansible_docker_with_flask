@@ -1,8 +1,7 @@
-- hosts: labs
-  remote_user: ubuntu
+- hosts: localhost
   sudo: yes
 
   tasks:
-    - include: installation.yml
+    # - include: installation.yml
     - include: launch_flask.yml
-    - include: remove.yml 
+    # - include: remove.yml 
