@@ -1,4 +1,4 @@
-- name: Doenload the repo from GitHub
+- name: Download the repo from GitHub
   git:
     repo: 'https://github.com/kpedrozag/docker_flask_app.git'
     clone: yes
@@ -9,5 +9,10 @@
     path: ./docker_flask_app
     name: flask_app_image
 
-- name: Run the container
-  command: docker run -p 5000:5000 -d flask_app_image
+- name: Run the container with the module
+  docker_container:
+    name: myflask
+    image: flask_app_image
+    state: started
+    ports:
+      - "5000:5000"
