@@ -16,3 +16,7 @@
     state: started
     ports:
       - "5000:5000"
+    etc_hosts: >
+      {
+        "127.0.0.1": "locallocal"
+      }
